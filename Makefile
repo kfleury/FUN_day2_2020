@@ -22,7 +22,7 @@ SRC			=	$(addsuffix $(EXT), $(addprefix $(SRC_DIR), $(SRC_FILES)))
 
 TEST_MAIN	=	$(addsuffix $(EXT), Main)
 
-TEST_DIR	=	unit_tests/
+TEST_DIR	=	test/
 
 TEST_FILES	=	UnitTestMy
 
@@ -34,7 +34,7 @@ CFLAGS		=	-Wall -Wextra
 #######################################################
 
 ## NAMES ##############################################
-BIN			=   DoOp
+BIN			=   doop
 TEST_BIN	=	unit_test
 #######################################################
 
@@ -42,7 +42,7 @@ TEST_BIN	=	unit_test
 .PHONY: all
 all:	$(BIN)
 $(BIN): $(MAIN) $(SRC)
-	$(CC) -o $(BIN) $(MAIN) $(SRC)
+	$(CC) -o $(BIN) $(MAIN)
 
 .PHONY: tests_run
 tests_run: $(TEST_BIN) fclean
