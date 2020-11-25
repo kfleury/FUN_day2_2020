@@ -46,6 +46,18 @@ safeNth (_:xs) i = safeNth xs (i - 1)
 --
 -- A function which takes a Maybe Int and returns its successor wrapped in a maybe.
 --
+{-  V1
+safeSucc :: Maybe Int -> Maybe Int
+safeSucc Nothing = Nothing
+safeSucc a = fmap succ $ a
+-}
+
+{-  V2
+safeSucc :: Maybe Int -> Maybe Int
+safeSucc Nothing = Nothing
+safeSucc a = a >>= (\a -> Just $ succ a)
+-}
+
 safeSucc :: Maybe Int -> Maybe Int
 safeSucc Nothing = Nothing
 safeSucc (Just a) = Just $ succ a
