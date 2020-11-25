@@ -1,6 +1,6 @@
 ##
 ## EPITECH PROJECT, 2020
-## FUN_day1_2020
+## FUN_day2_2020
 ## File description:
 ## Makefile
 ##
