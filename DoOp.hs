@@ -4,7 +4,12 @@
 -- File description:
 -- DoOp.hs
 --
-module Main where
+
+-- For Unit Test
+module DoOp where
+
+-- For Doop Program
+{-module Main where-}
 
 import Text.Read
 import System.Environment
@@ -54,7 +59,6 @@ safeSucc a = fmap succ $ a
 
 {-  V2
 safeSucc :: Maybe Int -> Maybe Int
-safeSucc Nothing = Nothing
 safeSucc a = a >>= (\a -> Just $ succ a)
 -}
 
@@ -78,6 +82,25 @@ myLookup a (_:xs) = myLookup a xs
 -- Nothing if any of the arguments are Nothing, or Just n (with n the result of the function applied to the
 -- arguments) otherwise.
 --
+
+{-  V1
+maybeDo :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+maybeDo f a b = a >>= (\a' -> b >>= (\b' -> Just $ f a' b'))
+-}
+
+{-  V2
+maybeDo :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+maybeDo f a b = do
+              a' <- a
+              b' <- b
+              Just (f a' b')
+-}
+
+{-  V3
+maybeDo :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
+maybeDo f a b = f <$> a <*> b
+-}
+
 maybeDo :: (a -> b -> c) -> Maybe a -> Maybe b -> Maybe c
 maybeDo _ Nothing _ = Nothing
 maybeDo _ _ Nothing = Nothing
@@ -159,7 +182,9 @@ doop [a, ['/'], c] = calc (div) (readInt a) (readInt c)
 doop [a, ['%'], c] = calc (mod) (readInt a) (readInt c)
 doop _ = Nothing
 
+{-
 main :: IO ()
 main = getArgs >>= (\av -> case doop av of
                                 Just res -> print res
                                 _ -> exitWith $ ExitFailure 84)
+-}

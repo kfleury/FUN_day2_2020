@@ -121,7 +121,66 @@ readIntTest2 = TestCase (assertEqual name expected out)
     expected = Nothing
     out = readInt "foobar"
 
+doopTest :: Test
+doopTest = TestCase (assertEqual name expected out)
+  where
+    name = "doop Test for [“2“, “+“, “2“]"
+    expected = Just 4
+    out = doop ["2", "+", "2"]
+
+doopTest2 :: Test
+doopTest2 = TestCase (assertEqual name expected out)
+  where
+    name = "doop Test for [“2“, “-“, “2“]"
+    expected = Just 0
+    out = doop ["2", "-", "2"]
+
+doopTest3 :: Test
+doopTest3 = TestCase (assertEqual name expected out)
+  where
+    name = "doop Test for [“2“, “*“, “2“]"
+    expected = Just 4
+    out = doop ["2", "*", "2"]
+
+doopTest4 :: Test
+doopTest4 = TestCase (assertEqual name expected out)
+  where
+    name = "doop Test for [“2“, “/“, “2“]"
+    expected = Just 1
+    out = doop ["2", "/", "2"]
+
+doopTest5 :: Test
+doopTest5 = TestCase (assertEqual name expected out)
+  where
+    name = "doop Test for [“2“, “/“, “0“]"
+    expected = Nothing
+    out = doop ["2", "/", "0"]
+
+doopTest6 :: Test
+doopTest6 = TestCase (assertEqual name expected out)
+  where
+    name = "doop Test for [“2“, “%“, “0“]"
+    expected = Nothing
+    out = doop ["2", "%", "0"]
+
+doopTest7 :: Test
+doopTest7 = TestCase (assertEqual name expected out)
+  where
+    name = "doop Test for [“2“, “%“, “2“]"
+    expected = Just 0
+    out = doop ["2", "%", "2"]
+
+doopTest8 :: Test
+doopTest8 = TestCase (assertEqual name expected out)
+  where
+    name = "doop Test for [“2“, “2“]"
+    expected = Nothing
+    out = doop ["2", "2"]
+
 testsStep1 = TestList [myElemTest, myElemTest2, safeDivTest, safeDivTest2,
                       safeNthTest, safeNthTest2, safeNthTest3, safeSuccTest,
                       safeSuccTest2, myLookupTest, myLookupTest2, maybeDoTest,
                       maybeDoTest2, maybeDoTest3, readIntTest, readIntTest2]
+
+testsDoop = TestList [doopTest, doopTest2, doopTest3, doopTest4, doopTest5, doopTest6,
+                      doopTest7, doopTest8]
